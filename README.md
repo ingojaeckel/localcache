@@ -3,5 +3,5 @@
 Introduction
 ============
 
-An in-memory cache for structs in (Go)[http://golang.org/].
+An in-memory cache for structs in [Go](http://golang.org/).
 
