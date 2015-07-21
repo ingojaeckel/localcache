@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jaeckel/localcache.svg)](https://travis-ci.org/jaeckel/localcache)
+[![Build Status](https://travis-ci.org/ingojaeckel/localcache.svg)](https://travis-ci.org/ingojaeckel/localcache)
 
 Introduction
 ============
