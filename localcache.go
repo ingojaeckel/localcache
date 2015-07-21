@@ -10,6 +10,7 @@ import (
 )
 
 var localcache map[string]CachedValue
+
 const debugMode = false
 
 func initializeIfNecessary() bool {
@@ -71,7 +72,7 @@ func expire(key string) {
 }
 
 func getKey(someObject interface{}, id string) string {
-        return fmt.Sprintf("%s.%s", reflect.TypeOf(someObject), id)
+	return fmt.Sprintf("%s.%s", reflect.TypeOf(someObject), id)
 }
 
 func Exists(id string, deserialized interface{}) bool {
@@ -88,7 +89,7 @@ func Get(id string, deserialized interface{}) error {
 	dec := json.NewDecoder(strings.NewReader(string(item)))
 
 	if err := dec.Decode(&deserialized); err != nil {
-		return err 
+		return err
 	}
 	return nil
 }
@@ -108,13 +109,13 @@ func PutWithTTL(id string, someObject interface{}, ttlSeconds int64) error {
 }
 
 func (c CachedValue) Expired() bool {
-	if (c.ExpiresOn == 0) {
+	if c.ExpiresOn == 0 {
 		return false // Expiry is disabled on this CachedValue
 	}
 	return time.Now().Unix() > c.ExpiresOn
 }
 
 type CachedValue struct {
-	Value string
+	Value     string
 	ExpiresOn int64 // Unix timestamp (seconds) for when this will expire. Or 0 to disable expiry.
 }

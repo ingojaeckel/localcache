@@ -1,4 +1,4 @@
-package localcache 
+package localcache
 
 import (
 	"testing"
@@ -16,7 +16,6 @@ func Test_InitializeOnGet(t *testing.T) {
 	}
 }
 
-
 func Test_Exists(t *testing.T) {
 	var p Point
 	if Exists("nonExistingValue", &p) {
@@ -29,7 +28,7 @@ func Test_Get(t *testing.T) {
 	if err := Get("k", &p); err == nil {
 		t.Errorf("expected an error")
 	}
-	Put("k", &Point{2,3})
+	Put("k", &Point{2, 3})
 	if err := Get("k", &p); err != nil {
 		t.Errorf("unexpected error %s", err)
 	}
@@ -39,10 +38,10 @@ func Test_Get(t *testing.T) {
 }
 
 func Test_Put(t *testing.T) {
-	Put("key1", &Point{1,2})
+	Put("key1", &Point{1, 2})
 
 	var p Point
-	
+
 	if !Exists("key1", &p) {
 		t.Errorf("value does not exist")
 	}
@@ -59,13 +58,13 @@ func Test_Put(t *testing.T) {
 
 func Test_Put_With_TTL(t *testing.T) {
 	var p Point
-	PutWithTTL("key1", &Point{1,2}, -1)
+	PutWithTTL("key1", &Point{1, 2}, -1)
 
 	if Exists("key1", &p) {
 		t.Errorf("value should not exist since it's expired")
 	}
-	
-	PutWithTTL("key1", &Point{1,2}, -1)
+
+	PutWithTTL("key1", &Point{1, 2}, -1)
 	if Get("key1", &p) == nil {
 		t.Errorf("should have received an error because this key should have been expired already")
 	}
@@ -80,7 +79,7 @@ func Test_Expiry(t *testing.T) {
 	if notExpired2.Expired() {
 		t.Errorf("This should only expire 60 sec from now.")
 	}
-	notExpired3 := CachedValue{Value:"foo"}
+	notExpired3 := CachedValue{Value: "foo"}
 	if notExpired3.Expired() {
 		t.Errorf("This should only expire 60 sec from now.")
 	}
