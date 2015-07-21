@@ -11,7 +11,7 @@ install:
 
 # Run build and tests
 script:
-    - go get golang.org/x/tools/cmd/cover
+    - ./go_appengine/goapp get golang.org/x/tools/cmd/cover
     - ./go_appengine/goapp test -test.v=true
     - ./go_appengine/goapp test -cover -test.v=true -test.coverprofile=c.out
     - ./go_appengine/goapp build
